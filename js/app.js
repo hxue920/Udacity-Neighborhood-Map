@@ -132,7 +132,7 @@ var mapViewModel = function() {
   self.filterQuery = ko.observable('');
   self.filteredItems = ko.computed(function() {
     var filter = self.filterQuery().toLowerCase();
-    if (!filter) {
+    if (!filter) { //if search field is empty, show all markers
         markers.forEach(function(item) {
           item.setVisible(true);
         });
@@ -150,6 +150,7 @@ var mapViewModel = function() {
     }
   }, self);
 
+  //invokes when list-item inside sidebar is clicked, re-centers the map to chosen location and opens infowindow
   self.listClick = function(bootcamp) {
     map.setZoom(18);
     map.setCenter(bootcamp.location);
